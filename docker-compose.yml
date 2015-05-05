@@ -1,0 +1,9 @@
+web:
+  command: php artisan serve --host=0.0.0.0
+  build: .
+  volumes:
+    - ".:/code"
+  ports:
+    - "8000:8000"
+  environment:
+    - LARAVEL_ENV=local
