@@ -25,4 +25,6 @@ RUN npm install -g gulp browserify
 # Install Ruby Sass
 RUN gem install sass
 
+# Install Node.js dependencies
 WORKDIR /code/app
+RUN npm install
