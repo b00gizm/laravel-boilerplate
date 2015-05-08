@@ -55,7 +55,7 @@ Install [Docker Compose](http://docs.docker.com/compose/) on your system.
 6. You can finally launch your Docker container which will start the dev web server.
 
     ```bash
-    $ docker compose up
+    $ docker-compose up
     ```
 
     The app should then be running on your docker daemon on port 8000 (On OS X you can use `boot2docker ip` to find out the IP address). For convenience, I created a `localdocker` entry in my `/etc/hosts` which points to that IP.
