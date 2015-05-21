@@ -2,7 +2,7 @@
 	<head>
 		<title>Laravel</title>
 
-		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Raleway:400,100,300' rel='stylesheet' type='text/css'>
 		<link href='{{ elixir("css/main.css") }}' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
