@@ -1,5 +1,5 @@
 # laravel-boilerplate
-Docker container to get started with Laravel 5, Gulp.js, ES6 and more...
+Docker container to get started with Laravel 5, Nginx, Gulp.js, ES6 and more...
 
 ## Prerequisites
 
@@ -12,7 +12,8 @@ Install [Docker](https://www.docker.com/) on your system.
 Install [Docker Compose](http://docs.docker.com/compose/) on your system.
 
 * Python/pip: `sudo pip install -U docker-compose`
-* Others: ``curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose; chmod +x /usr/local/bin/docker-compose`` 
+* Homebrew: `brew install docker-compose`
+* Others: ``curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose; chmod +x /usr/local/bin/docker-compose`` 
 
 ## Get up and running
 
@@ -55,16 +56,16 @@ Install [Docker Compose](http://docs.docker.com/compose/) on your system.
 6. You can finally launch your Docker container which will start the dev web server.
 
     ```bash
-    $ docker-compose up
+    $ docker-compose up -d
     ```
 
-    The app should then be running on your docker daemon on port 8000 (On OS X you can use `boot2docker ip` to find out the IP address). For convenience, I created a `localdocker` entry in my `/etc/hosts` which points to that IP.
+    The app should then be running on your docker daemon on standard HTTP port 80 (On OS X you can use `boot2docker ip` to find out the IP address). For convenience, I created a `localdocker.dev` entry in my `/etc/hosts` which points to that IP.
 
     ```bash
-    $ open http://localdocker:8000
+    $ open http://localdocker.dev
     ```
 
-7. In a second shell, you can then run `gulp watch` to let Gulp automatically watch your assets and recompile them if they've changed.
+7. You can then run `gulp watch` to let Gulp automatically watch your assets and recompile them if they've changed.
 
     ```bash
     $ docker-compose run web gulp watch
