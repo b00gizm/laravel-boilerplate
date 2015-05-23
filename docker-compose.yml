@@ -4,5 +4,11 @@ web:
     - ".:/code"
   ports:
     - "80:80"
+  links:
+    - blackfire
   environment:
     - LARAVEL_ENV=local
+
+blackfire:
+  image: blackfire/blackfire
+  env_file: ./app/.env
