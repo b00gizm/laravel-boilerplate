@@ -77,13 +77,13 @@ Install [Docker Compose](http://docs.docker.com/compose/) on your system.
 
 If you want to use the [Blackfire](https://blackfire.io) profiler, we got you covered as well. Just fill in your Blackfire credentials in `app/.env` (after you copied it from `app/.env.example`) and you're good to go.
 
-    ```bash
-    BLACKFIRE_SERVER_ID=YourBlackfireServerID
-    BLACKFIRE_SERVER_TOKEN=YourBlackfireServerToken
-    BLACKFIRE_CLIENT_ID=YourBlackfireClientID
-    BLACKFIRE_CLIENT_TOKEN=YourBlackfireClientToken
-    BLACKFIRE_LOG_LEVEL=4
-    ```
+```bash
+BLACKFIRE_SERVER_ID=YourBlackfireServerID
+BLACKFIRE_SERVER_TOKEN=YourBlackfireServerToken
+BLACKFIRE_CLIENT_ID=YourBlackfireClientID
+BLACKFIRE_CLIENT_TOKEN=YourBlackfireClientToken
+BLACKFIRE_LOG_LEVEL=4
+```
 
 For further information, please see Blackfire's [Getting Started](https://blackfire.io/getting-started) docs.
 
