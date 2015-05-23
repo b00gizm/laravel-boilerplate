@@ -8,9 +8,11 @@ web:
   links:
     - blackfire
     - postgres
+    - redis
   environment:
     - LARAVEL_ENV=local
     - POSTGRESQL_HOST=postgres
+    - REDIS_HOST=redis
 
 blackfire:
   image: blackfire/blackfire
@@ -21,3 +23,8 @@ postgres:
   ports:
     - "5432:5432"
   env_file: ./app/.env
+
+redis:
+  image: redis:2.8
+  ports:
+    - "6379:6379"
