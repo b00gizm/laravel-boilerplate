@@ -1,4 +1,5 @@
 web:
+  restart: always
   build: .
   volumes:
     - ".:/code"
@@ -6,9 +7,17 @@ web:
     - "80:80"
   links:
     - blackfire
+    - postgres
   environment:
     - LARAVEL_ENV=local
+    - POSTGRESQL_HOST=postgres
 
 blackfire:
   image: blackfire/blackfire
+  env_file: ./app/.env
+
+postgres:
+  image: jcalazan/postgresql
+  ports:
+    - "5432:5432"
   env_file: ./app/.env
