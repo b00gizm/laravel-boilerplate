@@ -1,6 +1,23 @@
 # laravel-boilerplate
 Docker container to get started with Laravel 5, Nginx, Gulp.js, ES6 and more...
 
+## What's inside
+
+* PHP 5.6
+* Laravel 5
+* Nginx
+* Node.js
+* PostgreSQL
+* Redis
+* beanstalkd
+* Blackfire Profiler
+
+### Gulp.js build system
+
+* Browserify (incl. Babel.js transpiler)
+* SASS compilation
+* Asset cache busting
+
 ## Prerequisites
 
 Install [Docker](https://www.docker.com/) on your system.
