@@ -82,7 +82,7 @@ Install [Docker Compose](http://docs.docker.com/compose/) on your system.
     $ open http://localdocker.dev
     ```
 
-![Yay, we did it!](http://i.imgur.com/LAciHl7.png)
+![Yay, we did it!](http://i.imgur.com/c0OQdjM.png)
 
 7. If you run `gulp watch`, Gulp will automatically watch your assets and recompile them if changed.
 
@@ -105,7 +105,7 @@ root@ee746ce03589:/code/app $ npm install
 root@ee746ce03589:/code/app $ gulp watch
 ```
 
-This really is my preferred way, because it involves less typing and it feels more "natural", because you may need to initiate several commands via the CLI an a regular base (creating class skeletons, running database migrations etc.)
+This really is my preferred way, because it involves less typing and it feels more "natural", because you may need to initiate several commands via the CLI on a regular base (creating class skeletons, running database migrations etc.)
 
 ## Blackfire.io Support
 
