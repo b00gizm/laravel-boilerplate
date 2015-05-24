@@ -1,14 +1,37 @@
 web:
+  restart: always
   build: .
   volumes:
     - ".:/code"
   ports:
     - "80:80"
   links:
+    - beanstalkd
     - blackfire
+    - postgres
+    - redis
   environment:
     - LARAVEL_ENV=local
+    - POSTGRESQL_HOST=postgres
+    - REDIS_HOST=redis
+    - BEANSTALKD_HOST=beanstalkd
+
+beanstalkd:
+  image: chriskite/beanstalkd
+  ports:
+    - "11300:11300"
 
 blackfire:
   image: blackfire/blackfire
   env_file: ./app/.env
+
+postgres:
+  image: jcalazan/postgresql
+  ports:
+    - "5432:5432"
+  env_file: ./app/.env
+
+redis:
+  image: redis:2.8
+  ports:
+    - "6379:6379"
