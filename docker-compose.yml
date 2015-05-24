@@ -6,6 +6,7 @@ web:
   ports:
     - "80:80"
   links:
+    - beanstalkd
     - blackfire
     - postgres
     - redis
@@ -13,6 +14,12 @@ web:
     - LARAVEL_ENV=local
     - POSTGRESQL_HOST=postgres
     - REDIS_HOST=redis
+    - BEANSTALKD_HOST=beanstalkd
+
+beanstalkd:
+  image: chriskite/beanstalkd
+  ports:
+    - "11300:11300"
 
 blackfire:
   image: blackfire/blackfire
