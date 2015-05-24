@@ -1,6 +1,23 @@
 # laravel-boilerplate
 Docker container to get started with Laravel 5, Nginx, Gulp.js, ES6 and more...
 
+## What's inside
+
+* PHP 5.6
+* Laravel 5
+* Nginx
+* Node.js
+* PostgreSQL
+* Redis
+* beanstalkd
+* Blackfire Profiler
+
+### Gulp.js build system
+
+* Browserify (incl. Babel.js transpiler)
+* SASS compilation
+* Asset cache busting
+
 ## Prerequisites
 
 Install [Docker](https://www.docker.com/) on your system.
@@ -17,28 +34,40 @@ Install [Docker Compose](http://docs.docker.com/compose/) on your system.
 
 ## Get up and running
 
-1. Build your Docker development container container: It will pull a base image from the Docker registry and install all necessary dependencies (This might take a while, depending on your host system).
+0. Copy `app/.env.example` to `app/.env` so Docker (and later Laravel) can use it.
 
     ```bash
-    $ cd code/laravel-boilerplate; docker-compose build
+    $ cd code/laravel-boilerplate; cp app/.env.example app/.env
     ```
 
-2. Install PHP dependencies with [Composer](https://getcomposer.org), which you installed during step 1.
+1. Build your Docker development container container: It will pull a [base image](https://registry.hub.docker.com/_/ubuntu/) from the Docker registry and install all necessary dependencies (This might take a while, depending on your host system).
 
     ```bash
-    $ docker-compose run web composer update
+    $ docker-compose build
     ```
 
-3. Install Node.js dependencies with [npm](https://www.npmjs.com), which you did also install during the first step.
+2. Create and start the main Docker container and attach all linked containers. For your very first run, this will also take a while, because docker-compose first needs to pull the images for all linked containers.
 
     ```bash
-    $ docker-compose run web npm install
+    $ docker-compose up -d
     ```
 
-4. Build all frontend Javascripts and CSS files from contents of `app/resources/assets` with [Gulp](http://gulpjs.com) through Laravel's [Elixir](http://laravel.com/docs/5.0/elixir).
+3. Install PHP dependencies with [Composer](https://getcomposer.org), which you installed during step 1.
 
     ```bash
-    $ docker-compose run web gulp
+    $ docker-compose run --no-deps web composer update
+    ```
+
+4. Install Node.js dependencies with [npm](https://www.npmjs.com), which you did also install during the first step.
+
+    ```bash
+    $ docker-compose run --no-deps web npm install
+    ```
+
+5. Build all frontend Javascripts and CSS files from contents of `app/resources/assets` with [Gulp](http://gulpjs.com) through Laravel's [Elixir](http://laravel.com/docs/5.0/elixir).
+
+    ```bash
+    $ docker-compose run --no-deps web gulp
     ```
 
     What it does:
@@ -47,31 +76,50 @@ Install [Docker Compose](http://docs.docker.com/compose/) on your system.
     * It compiles Javascripts inside `app/resources/assets/js` with [Browserify](http://browserify.org). You can use ES6 and ES7 syntax and features, if you want. Browserify takes care of compiling everyhing to 100% browser compatible Javascript.
     * It versions the compiled `main.css` and `main.js`, so they won't accidentally get cached by the browser after when recompiled.
 
-5. Copy `app/.env.example` to `app/.env` so Laravel can use it.
-
-    ```bash
-    $ cp app/.env.example app/.env
-    ```
-
-6. You can finally launch your Docker container which will start the dev web server.
-
-    ```bash
-    $ docker-compose up -d
-    ```
-
-    The app should then be running on your docker daemon on standard HTTP port 80 (On OS X you can use `boot2docker ip` to find out the IP address). For convenience, I created a `localdocker.dev` entry in my `/etc/hosts` which points to that IP.
+6. You can then access the app, which should then be running on your docker daemon, on standard HTTP port 80 (On OS X you can use `boot2docker ip` to find out the IP address). For convenience, I created a `localdocker.dev` entry in my `/etc/hosts` which points to that IP.
 
     ```bash
     $ open http://localdocker.dev
     ```
 
-7. You can then run `gulp watch` to let Gulp automatically watch your assets and recompile them if they've changed.
+![Yay, we did it!](http://i.imgur.com/LAciHl7.png)
+
+7. If you run `gulp watch`, Gulp will automatically watch your assets and recompile them if changed.
 
     ```bash
-    $ docker-compose run web gulp watch
+    $ docker-compose run --no-deps web gulp watch
     ```
 
 8. Go and build something awesome! :)
+
+## Alternative Way
+
+Instead of running steps 3) to 5), and 7) als `docker-compose` on/off commands, you can run them directly inside the container:
+
+```bash
+$ docker-compose run --no-deps web bash
+root@ee746ce03589:/code/app $ composer update
+...
+root@ee746ce03589:/code/app $ npm install
+...
+root@ee746ce03589:/code/app $ gulp watch
+```
+
+This really is my preferred way, because it involves less typing and it feels more "natural", because you may need to initiate several commands via the CLI an a regular base (creating class skeletons, running database migrations etc.)
+
+## Blackfire.io Support
+
+If you want to use the [Blackfire](https://blackfire.io) profiler, we got you covered as well. Just fill in your Blackfire credentials in `app/.env` (after you copied it from `app/.env.example`) and you're good to go.
+
+```bash
+BLACKFIRE_SERVER_ID=YourBlackfireServerID
+BLACKFIRE_SERVER_TOKEN=YourBlackfireServerToken
+BLACKFIRE_CLIENT_ID=YourBlackfireClientID
+BLACKFIRE_CLIENT_TOKEN=YourBlackfireClientToken
+BLACKFIRE_LOG_LEVEL=4
+```
+
+For further information, please see Blackfire's [Getting Started](https://blackfire.io/getting-started) docs.
 
 ## Maintainer
 

@@ -44,7 +44,7 @@ return [
 
 		'beanstalkd' => [
 			'driver' => 'beanstalkd',
-			'host'   => 'localhost',
+			'host'   => env('BEANSTALKD_HOST', 'localhost'),
 			'queue'  => 'default',
 			'ttr'    => 60,
 		],
@@ -86,7 +86,7 @@ return [
 	*/
 
 	'failed' => [
-		'database' => 'mysql', 'table' => 'failed_jobs',
+		'database' => 'pgsql', 'table' => 'failed_jobs',
 	],
 
 ];
