@@ -1,6 +1,6 @@
 server {
   listen 80;
-  server_name example.org;
+  server_name laravel-boilerplate.dev;
   charset utf-8;
 
   root /code/app/public/;

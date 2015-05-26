@@ -3,7 +3,7 @@ FROM ubuntu:15.04
 RUN apt-get update
 RUN apt-get install -y software-properties-common
 RUN apt-get install -y nginx curl nodejs npm ruby libnotify-bin
-RUN apt-get install -y php5-fpm php5-mcrypt php5-pgsql
+RUN apt-get install -y php5-fpm php5-mcrypt php5-pgsql php5-xdebug
 
 # Configure Nginx
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
@@ -21,6 +21,9 @@ RUN sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" $PHP_INI
 RUN sed -i "s/display_errors = Off/display_errors = On/" $PHP_INI
 RUN sed -i "s/;date.timezone =/date.timezone = Europe\/Berlin/" $PHP_INI
 RUN php5enmod mcrypt
+
+# Configure Xdebug
+ADD php-conf/xdebug.ini ${PHP_INI_DIR}/conf.d/20-xdebug.ini
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php

@@ -5,6 +5,7 @@ web:
     - ".:/code"
   ports:
     - "80:80"
+    - "9000:9000"
   links:
     - beanstalkd
     - blackfire
