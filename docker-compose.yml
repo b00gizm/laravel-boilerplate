@@ -1,5 +1,4 @@
 web:
-  restart: always
   build: .
   volumes:
     - ".:/code"
